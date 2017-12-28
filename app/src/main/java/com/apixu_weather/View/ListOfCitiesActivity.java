@@ -37,7 +37,7 @@ public class ListOfCitiesActivity extends AppCompatActivity {
     }
 
     public void test(View view){
-        Log.e("test","isClicked");
+        Log.e("test","isClickedd");
         mList.get(0).setCityName(new ObservableField<String>("SSSSSSSS"));
         recyclerViewAdapter.notifyDataSetChanged();
     }
