@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.widget.ImageView;
 
-import com.apixu_weather.Model.CurrentCity;
+import com.apixu_weather.Model.POJOs.CurrentWeather.CurrentCity;
 import com.squareup.picasso.Picasso;
 
 /**

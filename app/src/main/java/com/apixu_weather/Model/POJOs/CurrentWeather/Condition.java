@@ -1,5 +1,5 @@
 
-package com.apixu_weather.Model;
+package com.apixu_weather.Model.POJOs.CurrentWeather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

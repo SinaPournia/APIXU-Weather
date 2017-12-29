@@ -1,13 +1,8 @@
 
-package com.apixu_weather.Model;
+package com.apixu_weather.Model.POJOs.CurrentWeather;
 
-import android.databinding.BindingAdapter;
-import android.widget.ImageView;
-
-import com.apixu_weather.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
 
 public class CurrentCity {
 

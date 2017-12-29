@@ -2,12 +2,14 @@ package com.apixu_weather.View;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableField;
+import android.graphics.ColorSpace;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.apixu_weather.Model.RetrofitUtil.CreateRetrofit;
 import com.apixu_weather.R;
 import com.apixu_weather.View.ListOfCities.RecyclerViewAdapter;
 import com.apixu_weather.ViewModel.RecyclerViewViewModel;
@@ -23,7 +25,7 @@ public class ListOfCitiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_list_of_cities);
+      /*  binding= DataBindingUtil.setContentView(this,R.layout.activity_list_of_cities);
         binding.RecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         mList= new ArrayList<>();
         mList.add(new RecyclerViewViewModel("test1.1","test1.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
@@ -31,7 +33,8 @@ public class ListOfCitiesActivity extends AppCompatActivity {
         mList.add(new RecyclerViewViewModel("test3.1","test3.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
         mList.add(new RecyclerViewViewModel("test4.1","test4.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
          recyclerViewAdapter = new RecyclerViewAdapter(mList);
-        binding.RecyclerView.setAdapter(recyclerViewAdapter);
+        binding.RecyclerView.setAdapter(recyclerViewAdapter);*/
+        new CreateRetrofit().fetchData();
 
 
     }
