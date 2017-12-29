@@ -16,6 +16,7 @@
 <LinearLayout
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:onClick="@{() -> RecyclerViewViewModel.getClickedCity(RecyclerViewViewModel.cityName)}"
     android:layout_height="wrap_content">
 <ImageView
     android:layout_weight="1"

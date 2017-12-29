@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.apixu_weather.Model.RetrofitUtil.Constants;
 import com.apixu_weather.Model.RetrofitUtil.CreateRetrofit;
 import com.apixu_weather.R;
 import com.apixu_weather.View.ListOfCities.RecyclerViewAdapter;
@@ -25,16 +26,24 @@ public class ListOfCitiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      /*  binding= DataBindingUtil.setContentView(this,R.layout.activity_list_of_cities);
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_list_of_cities);
         binding.RecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         mList= new ArrayList<>();
-        mList.add(new RecyclerViewViewModel("test1.1","test1.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
-        mList.add(new RecyclerViewViewModel("test2.1","test2.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
-        mList.add(new RecyclerViewViewModel("test3.1","test3.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
-        mList.add(new RecyclerViewViewModel("test4.1","test4.2","http://cdn.apixu.com/weather/64x64/night/296.png"));
+        mList.add(new RecyclerViewViewModel("test1.1","test1.2","//cdn.apixu.com/weather/64x64/night/296.png"));
+        mList.add(new RecyclerViewViewModel("test2.1","test2.2","//cdn.apixu.com/weather/64x64/night/296.png"));
+        mList.add(new RecyclerViewViewModel("test3.1","test3.2","//cdn.apixu.com/weather/64x64/night/296.png"));
+        mList.add(new RecyclerViewViewModel("test4.1","test4.2","//cdn.apixu.com/weather/64x64/night/296.png"));
          recyclerViewAdapter = new RecyclerViewAdapter(mList);
-        binding.RecyclerView.setAdapter(recyclerViewAdapter);*/
-        new CreateRetrofit().fetchData();
+
+       Constants Cities = new Constants();
+       ArrayList<String> cities=Cities.getCities();
+       CreateRetrofit mRetrofit=new CreateRetrofit();
+        binding.RecyclerView.setAdapter(recyclerViewAdapter);
+       for(int i=0;i<cities.size();i++){
+        mRetrofit.fetchCurrentWeather(cities.get(i),mList);
+
+           recyclerViewAdapter.notifyDataSetChanged();
+       }
 
 
     }

@@ -2,6 +2,8 @@ package com.apixu_weather.ViewModel;
 
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.apixu_weather.Model.POJOs.CurrentWeather.CurrentCity;
@@ -21,6 +23,7 @@ public class RecyclerViewViewModel {
         this.cityName = new ObservableField<>(currentCity.getLocation().getName());
         this.temp = new ObservableField<>(String.valueOf(currentCity.getCurrent().getTempC()));
         this.ImageUrl = new ObservableField<>(currentCity.getCurrent().getCondition().getIcon());
+        Log.e("RecyclerViewViewModel",currentCity.getLocation().getName());
     }
     public RecyclerViewViewModel(String cityName,String temp,String ImageUrl) {
         this.currentCity=currentCity;
@@ -64,12 +67,20 @@ public class RecyclerViewViewModel {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
+        Log.e("PicaseImageUrl",imageUrl);
         Picasso.with(view.getContext())
-                .load(imageUrl)
+                .load("http:"+imageUrl)
 
                 .into(view);
+
     }
 
+
+    public void getClickedCity(ObservableField<String> City) {
+        Log.e("getClickedCity",City.get());
+
+
+    }
 
 
 
