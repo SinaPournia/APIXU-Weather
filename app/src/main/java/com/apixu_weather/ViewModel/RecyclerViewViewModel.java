@@ -1,12 +1,13 @@
 package com.apixu_weather.ViewModel;
 
+import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-
+import android.content.Context;
 import com.apixu_weather.Model.POJOs.CurrentWeather.CurrentCity;
+import com.apixu_weather.View.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -18,8 +19,13 @@ public class RecyclerViewViewModel {
     ObservableField<String> cityName;
     ObservableField<String> temp;
     ObservableField<String> ImageUrl;
-    public RecyclerViewViewModel(CurrentCity currentCity) {
+    Context context;
+
+
+
+    public RecyclerViewViewModel(CurrentCity currentCity, Context context) {
         this.currentCity=currentCity;
+        this.context = context;
         this.cityName = new ObservableField<>(currentCity.getLocation().getName());
         this.temp = new ObservableField<>(String.valueOf(currentCity.getCurrent().getTempC()));
         this.ImageUrl = new ObservableField<>(currentCity.getCurrent().getCondition().getIcon());
@@ -77,8 +83,11 @@ public class RecyclerViewViewModel {
 
 
     public void getClickedCity(ObservableField<String> City) {
-        Log.e("getClickedCity",City.get());
 
+        Intent startDetailActivity = new Intent(context.getApplicationContext(), DetailActivity.class);
+        startDetailActivity.putExtra("city",City.get());
+        startDetailActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(startDetailActivity);
 
     }
 

@@ -11,8 +11,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        dataBinding.enabled=true
+        dataBinding.enabled = true
         multiDexEnabled true
+    }
+    repositories {
+        maven { url "https://jitpack.io" }
     }
     buildTypes {
         release {
@@ -29,12 +32,13 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:support-v4:27.0.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation  'io.reactivex.rxjava2:rxjava:2.1.0'
-    implementation  'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation  'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    implementation  'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.android.support:recyclerview-v7:+'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

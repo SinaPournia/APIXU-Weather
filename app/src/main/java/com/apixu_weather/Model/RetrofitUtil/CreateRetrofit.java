@@ -3,6 +3,8 @@ package com.apixu_weather.Model.RetrofitUtil;
 import android.util.Log;
 
 import com.apixu_weather.Model.POJOs.CurrentWeather.CurrentCity;
+import com.apixu_weather.Model.POJOs.ForecastWeather.Forecast;
+import com.apixu_weather.ViewModel.DetailViewModel;
 import com.apixu_weather.ViewModel.RecyclerViewViewModel;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CreateRetrofit {
     Retrofit retrofit;
     ApiContract apiContract;
-    io.reactivex.Observable observable;
+
 
     public CreateRetrofit() {
         retrofit=retrofitBuilder();
@@ -41,38 +43,28 @@ public class CreateRetrofit {
             .baseUrl("http://api.apixu.com")
             .build();
     }
-    public void fetchCurrentWeather(final String City, final ArrayList<RecyclerViewViewModel> recyclerViewViewModel ){
+    public CurrentCity fetchCurrentWeather(final String City ){
 
-        observable=apiContract.getCurrentWeather(City,"b02c5db5a05e4ccda27112236172512");
-        observable.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<CurrentCity>() {
 
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        CurrentCity currentCity=  apiContract.getCurrentWeather(City,"b02c5db5a05e4ccda27112236172512")
+                .subscribeOn(Schedulers.newThread())
+                .blockingFirst();
+        return currentCity;
 
-                    }
-
-                    @Override
-                    public void onNext(CurrentCity currentCity) {
-
-                        Log.e("OnNext",currentCity.getCurrent().getCondition().getText());
-                        recyclerViewViewModel.add(new RecyclerViewViewModel(currentCity));
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                      Log.e("OnError",City);
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-
-                });
 
     }
+   public Forecast  fetchForecastWeather(String City){
 
+       Log.e("Forecast","fetchForecastWeather");
+
+       Forecast forecast =apiContract.getForecastWeather(City,"10","b02c5db5a05e4ccda27112236172512")
+               .subscribeOn(Schedulers.newThread())
+               .blockingFirst();
+
+
+       return forecast;
+
+
+   }
 
 }
